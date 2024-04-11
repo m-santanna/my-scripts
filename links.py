@@ -9,6 +9,10 @@ def getLink():
             return "https://github.com/m-santanna"
         case "anime":
             return "https://www.crunchyroll.com/pt-br"
+        case "vlr":
+            return "https://vlr.gg"
+        case "pw":
+            return "https://m-santanna.me"
         case default:
             return 0
 
@@ -18,7 +22,7 @@ def main():
         return
     userInput = getLink()
     if userInput == 0:
-        print('Note that the only allowed inputs for now are: \n"gau"\n"github"\n"anime"\nWhere all of them are case insensitive.')
+        print('Note that the only allowed inputs for now are: \n"gau"\n"github"\n"anime"\n"vlr"\n"pw"\nWhere all of them are case insensitive.')
         return
-    webbrowser.open(userInput)
+    webbrowser.open_new_tab(userInput)
 main()
