@@ -13,6 +13,8 @@ def getLink():
             return "https://vlr.gg"
         case "pw":
             return "https://m-santanna.me"
+        case "webmail":
+            return "https://webmail.tecnico.ulisboa.pt/rc/?_task=mail&_mbox=INBOX"
         case default:
             return 0
 
