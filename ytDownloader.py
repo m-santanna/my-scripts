@@ -22,9 +22,19 @@ def getStreamTypeFromUser():
     else:
         print('Please, insert a valid input.')
         return 
-    
+def getDirectoryFromUser():
+    userInput = input('\nGreat, now insert the directory you want to download the file at.\n"d" to download the file in the directory this script is located\n"m" to download this file at "/Users/matheusss03/downloads"\nOr type your desired directory. Example "/Users/user123/folder1/folder2"\nNote that you can cancel by pressing Enter.\n')
+    if userInput == '':
+        print('Operation canceled.')
+        return
+    elif userInput == 'd':
+        return 'd'
+    elif userInput == 'm':
+        return '/Users/matheusss03/downloads'
+    return userInput
+
 def main():
-    userLink = input('Please, insert the link of the video you want to download.\nNote that you can cancel by pressing Enter.\n')
+    userLink = input('\nPlease, insert the link of the video you want to download.\nNote that you can cancel by pressing Enter.\n')
     if linkIsValid(userLink) == False:
         return
     streams = YouTube(userLink).streams
@@ -32,7 +42,10 @@ def main():
     if streamType == None:
         return
     source = streams.get_audio_only() if streamType == 'a' else streams.get_highest_resolution()
+    directory = getDirectoryFromUser()
+    if directory == None:
+        return
     print('Downloading...')
-    source.download("/users/matheusss03/downloads", None, f'{streamType}_')
+    source.download(directory if directory != "d" else None, None, f'{streamType}_')
     print('Done.')
 main()
